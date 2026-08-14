@@ -1,6 +1,18 @@
 {
   "rewrites": [
     {
+      "source": "/auth/:path*",
+      "destination": "https://presensi-magang-backend.vercel.app/api/auth/:path*"
+    },
+    {
+      "source": "/user/:path*",
+      "destination": "https://presensi-magang-backend.vercel.app/api/user/:path*"
+    },
+    {
+      "source": "/admin/:path*",
+      "destination": "https://presensi-magang-backend.vercel.app/api/admin/:path*"
+    },
+    {
       "source": "/(.*)",
       "destination": "/index.html"
     }

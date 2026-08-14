@@ -1,5 +1,6 @@
 import React, {
     createContext,
+    useEffect,
     useState,
 } from "react";
 
@@ -22,7 +23,72 @@ export const AuthProvider = ({ children }) => {
         return localStorage.getItem("token");
     });
 
-    const [loading, setLoading] = useState(false);
+    const [loading, setLoading] = useState(true);
+
+
+    // ========================================
+    // CEK SESSION SAAT APLIKASI DIBUKA
+    // ========================================
+
+    useEffect(() => {
+
+        const checkSession = async () => {
+
+            const savedToken =
+                localStorage.getItem("token");
+
+            if (!savedToken) {
+
+                setLoading(false);
+
+                return;
+
+            }
+
+            try {
+
+                const response =
+                    await axios.get(
+                        "/auth/me",
+                        {
+                            headers: {
+                                Authorization:
+                                    `Bearer ${savedToken}`,
+                            },
+                        }
+                    );
+
+                const currentUser =
+                    response.data.user;
+
+                localStorage.setItem(
+                    "user",
+                    JSON.stringify(currentUser)
+                );
+
+                setUser(currentUser);
+                setToken(savedToken);
+
+            } catch (error) {
+
+                localStorage.removeItem("token");
+                localStorage.removeItem("user");
+
+                setToken(null);
+                setUser(null);
+
+            } finally {
+
+                setLoading(false);
+
+            }
+
+        };
+
+
+        checkSession();
+
+    }, []);
 
 
     // ========================================
