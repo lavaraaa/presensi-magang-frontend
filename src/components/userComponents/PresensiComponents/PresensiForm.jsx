@@ -293,14 +293,16 @@ const PresensiForm = () => {
                         <div
                             className="
                                 rounded-circle
+                                bg-success
                                 bg-opacity-10
                                 d-flex
                                 align-items-center
                                 justify-content-center
-                                mb-1
+                                mx-auto
+                                mb-3
                             "
                             style={{
-                                width: "100%"
+                                width: "90%"
                             }}
                         >
 
