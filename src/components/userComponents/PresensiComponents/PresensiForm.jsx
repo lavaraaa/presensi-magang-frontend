@@ -12,6 +12,7 @@ const PresensiForm = () => {
         datang: false,
         pulang: false,
     });
+
     // ========================================
     // FORMAT TANGGAL
     // ========================================
@@ -26,6 +27,7 @@ const PresensiForm = () => {
                 year: "numeric",
             }
         );
+
     // ========================================
     // CEK PRESENSI HARI INI
     // ========================================
@@ -71,6 +73,24 @@ const PresensiForm = () => {
         fetchPresensiHariIni();
 
     }, []);
+
+
+    // ========================================
+    // SCROLL KE ATAS SETELAH PRESENSI PULANG
+    // ========================================
+
+    useEffect(() => {
+
+        if (presensiHariIni.pulang) {
+
+            window.scrollTo({
+                top: 0,
+                behavior: "smooth",
+            });
+
+        }
+
+    }, [presensiHariIni.pulang]);
 
 
     // ========================================
@@ -227,7 +247,9 @@ const PresensiForm = () => {
 
             setStatus("");
             setKeterangan("");
+
             await fetchPresensiHariIni();
+
         } catch (error) {
 
             console.error(
@@ -289,7 +311,9 @@ const PresensiForm = () => {
                 {sudahPresensiPulang ? (
 
                     <div className="text-center py-3">
-                        <div className=" rounded-circle
+
+                        <div
+                            className="rounded-circle
                                         bg-success
                                         bg-opacity-10
                                         d-flex
@@ -299,7 +323,7 @@ const PresensiForm = () => {
                                         mb-3"
                             style={{
                                 width: "50%",
-                                height:"505",
+                                height: "505px",
                             }}
                         >
 
@@ -522,10 +546,16 @@ const PresensiForm = () => {
                             />
 
                         </div>
-  <div className="alert alert-info mt-4">
-                <i className="bi bi-info-circle me-2"></i>
-               Bohong : DOSAAA!!!
-            </div>
+
+
+                        <div className="alert alert-info mt-4">
+
+                            <i className="bi bi-info-circle me-2"></i>
+
+                            Bohong : DOSAAA!!!
+
+                        </div>
+
 
                         {/* ========================================
                             ERROR
@@ -534,7 +564,9 @@ const PresensiForm = () => {
                         {error && (
 
                             <div className="alert alert-danger">
+
                                 {error}
+
                             </div>
 
                         )}
@@ -547,7 +579,9 @@ const PresensiForm = () => {
                         {success && (
 
                             <div className="alert alert-success">
+
                                 {success}
+
                             </div>
 
                         )}
