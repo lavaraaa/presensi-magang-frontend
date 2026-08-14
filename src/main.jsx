@@ -4,6 +4,7 @@ import App from "./App.jsx";
 import axios from "axios";
 
 import "bootstrap/dist/css/bootstrap.min.css";
+import "bootstrap-icons/font/bootstrap-icons.css";
 import "./main.css";
 
 import { BrowserRouter } from "react-router-dom";

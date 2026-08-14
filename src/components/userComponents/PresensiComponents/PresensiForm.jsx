@@ -288,7 +288,13 @@ const PresensiForm = () => {
 
                 {sudahPresensiPulang ? (
 
-                    <div className="text-center py-5">
+                    <div
+  className="text-center d-flex align-items-center justify-content-center"
+  style={{
+    minHeight: "100vh",
+    overflow: "hidden",
+  }}
+>
                         <div
                             className="
                                       rounded-circle
@@ -301,8 +307,8 @@ const PresensiForm = () => {
         mb-3
                             "
                             style={{
-                                width: "90%",
-                                height:"100vh",
+                                width: "50%",
+                                height:"50vh",
                             }}
                         >
 
