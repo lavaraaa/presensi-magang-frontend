@@ -100,13 +100,6 @@ const AdminDashboard = () => {
             backgroundColor: "#fff3e0",
         },
 
-        {
-            title: "Tidak Hadir",
-            value: totalTidakHadir,
-            icon: "bi-person-x-fill",
-            iconColor: "#6c757d",
-            backgroundColor: "#eeeeee",
-        },
     ];
 
     return (
