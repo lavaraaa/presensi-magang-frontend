@@ -148,32 +148,34 @@ const Login = () => {
                                     }}
                                 />
 
-                                <button
-                                    type="button"
-                                    onClick={() =>
-                                        setShowPassword(!showPassword)
-                                    }
-                                    style={{
-                                        position: "absolute",
-                                        right: "10px",
-                                        top: "50%",
-                                        transform: "translateY(-50%)",
-                                        border: "none",
-                                        background: "transparent",
-                                        padding: "0",
-                                        cursor: "pointer",
-                                        fontSize: "18px",
-                                        lineHeight: 1,
-                                    }}
-                                    aria-label={
-                                        showPassword
-                                            ? "Sembunyikan kata sandi"
-                                            : "Lihat kata sandi"
-                                    }
-                                >
-                                    {showPassword ? "🙈" : "👁️"}
-                                </button>
-
+                              <button
+    type="button"
+    onClick={() => setShowPassword(!showPassword)}
+    style={{
+        position: "absolute",
+        right: "10px",
+        top: "50%",
+        transform: "translateY(-50%)",
+        border: "none",
+        background: "transparent",
+        padding: "0",
+        cursor: "pointer",
+        color: "#6c757d",
+    }}
+    aria-label={
+        showPassword
+            ? "Sembunyikan kata sandi"
+            : "Lihat kata sandi"
+    }
+>
+    <i
+        className={
+            showPassword
+                ? "bi bi-eye-slash"
+                : "bi bi-eye"
+        }
+    ></i>
+</button>
                             </div>
 
                         </div>
