@@ -322,8 +322,8 @@ const PresensiForm = () => {
                                         mx-auto
                                         mb-3"
                             style={{
-                                width: "50%",
-                                height: "50%",
+                                width: "50px",
+                                height: "50px",
                             }}
                         >
 
