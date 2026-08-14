@@ -7,7 +7,7 @@ const Presensi = () => {
         <div
             style={{
                 minHeight: "100vh",
-                backgroundColor: "#f5f6f8",
+                // backgroundColor: "#f5f6f8",
             }}
         >
 

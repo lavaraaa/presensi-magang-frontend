@@ -293,7 +293,6 @@ const PresensiForm = () => {
                         <div
                             className="
                                 rounded-circle
-                                bg-success
                                 bg-opacity-10
                                 d-flex
                                 align-items-center
