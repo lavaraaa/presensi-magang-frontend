@@ -126,7 +126,7 @@ const UserNavbar = ({ isShifted }) => {
             <i className="bi bi-person-fill fs-4"></i>
           </div>
           <p className="ms-2 mb-1 fw-bold" style={{ fontSize: '12px', color: '#fff' }}>{user?.name || "-"}</p>
-          <p className="mb-2 fw-semibold" style={{ fontSize: '0.7rem', color: '#fff' }}>Anda login sebagai {user?.name || "-"}</p>
+          {/* <p className="mb-2 fw-semibold" style={{ fontSize: '0.7rem', color: '#fff' }}>Anda login sebagai {user?.name || "-"}</p> */}
           <button type="button" className="btn-close btn-close-white position-absolute end-0 top-0 m-3" data-bs-dismiss="offcanvas" aria-label="Close" />
         </div>
 
