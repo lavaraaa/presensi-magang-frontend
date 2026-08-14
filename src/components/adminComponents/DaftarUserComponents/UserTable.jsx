@@ -115,7 +115,7 @@ const UserTable = ({
                                             </button>
 
 
-                                            <button
+                                            {/* <button
                                                 type="button"
                                                 className="btn btn-sm btn-outline-danger"
                                                 onClick={() =>
@@ -125,7 +125,7 @@ const UserTable = ({
                                             >
                                                 <i className="bi bi-trash"></i>
                                                 Hapus
-                                            </button>
+                                            </button> */}
 
                                         </td>
 
