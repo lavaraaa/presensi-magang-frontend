@@ -9,7 +9,7 @@ import "./main.css";
 import { BrowserRouter } from "react-router-dom";
 import { AuthProvider } from "./pages/auth/AuthContext.jsx";
 
-axios.defaults.baseURL = "http://localhost:5000/api";
+axios.defaults.baseURL = "https://presensi-magang-backend.vercel.app/api";
 
 ReactDOM.createRoot(document.getElementById("root")).render(
     <React.StrictMode>
