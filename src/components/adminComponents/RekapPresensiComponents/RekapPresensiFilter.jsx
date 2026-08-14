@@ -20,6 +20,9 @@ const RekapPresensiFilter = ({
     setSearch,
 
     tanggalHariIni,
+
+    status,
+    setStatus,
 }) => {
 
     return (
@@ -32,74 +35,119 @@ const RekapPresensiFilter = ({
                     PENCARIAN PESERTA
                 ======================================== */}
 
-                <div className="mb-3">
+                <div className="row g-3 mb-3">
 
-                    <label className="form-label fw-semibold">
-                        Cari Peserta
-                    </label>
-                    <div className="input-group">
-                        {/* <span className="input-group-text">
-                            <i className="bi bi-search"></i>
-                        </span> */}
-                        <input
-                            type="text"
-                            className="form-control"
-                            placeholder="Cari berdasarkan nama atau email..."
-                            value={search}
-                            onChange={(e) =>
-                                setSearch(e.target.value)
-                            }
-                        />
+                    <div className="col-12 col-md-4">
+
+                        <label className="form-label fw-semibold">
+                            Cari Peserta
+                        </label>
+
+                        <div className="input-group">
+                            {/* <span className="input-group-text">
+                                <i className="bi bi-search"></i>
+                            </span> */}
+
+                            <input
+                                type="text"
+                                className="form-control"
+                                placeholder="Cari berdasarkan nama atau email..."
+                                value={search}
+                                onChange={(e) =>
+                                    setSearch(e.target.value)
+                                }
+                            />
+
+                        </div>
 
                     </div>
 
-                </div>
+
+                    {/* ========================================
+                        JENIS FILTER
+                    ======================================== */}
+
+                    <div className="col-12 col-md-4">
+
+                        <label className="form-label fw-semibold">
+                            Filter Berdasarkan
+                        </label>
+
+                        <select
+                            className="form-select"
+                            value={filterType}
+                            onChange={(e) => {
+
+                                setFilterType(
+                                    e.target.value
+                                );
+
+                                setTanggal("");
+                                setTanggalMulai("");
+                                setTanggalAkhir("");
+                                setPeriode("");
+
+                            }}
+                        >
+
+                            <option value="semua">
+                                Semua Data
+                            </option>
+
+                            <option value="tanggal">
+                                Tanggal Tertentu
+                            </option>
+
+                            <option value="rentang">
+                                Rentang Tanggal
+                            </option>
+
+                            <option value="bulan">
+                                Periode
+                            </option>
+
+                        </select>
+
+                    </div>
 
 
-                {/* ========================================
-                    JENIS FILTER
-                ======================================== */}
+                    {/* ========================================
+                        STATUS
+                    ======================================== */}
 
-                <div className="mb-3">
+                    <div className="col-12 col-md-4">
 
-                    <label className="form-label fw-semibold">
-                        Filter Berdasarkan
-                    </label>
+                        <label className="form-label fw-semibold">
+                            Status
+                        </label>
 
-                    <select
-                        className="form-select"
-                        value={filterType}
-                        onChange={(e) => {
+                        <select
+                            className="form-select"
+                            value={status}
+                            onChange={(e) =>
+                                setStatus(e.target.value)
+                            }
+                        >
 
-                            setFilterType(
-                                e.target.value
-                            );
+                            <option value="semua">
+                                Semua Status
+                            </option>
 
-                            setTanggal("");
-                            setTanggalMulai("");
-                            setTanggalAkhir("");
-                            setPeriode("");
+                            <option value="hadir">
+                                Hadir
+                            </option>
 
-                        }}
-                    >
+                            <option value="izin">
+                                Izin
+                            </option>
 
-                        <option value="semua">
-                            Semua Data
-                        </option>
+                            <option value="sakit">
+                                Sakit
+                            </option>
 
-                        <option value="tanggal">
-                            Tanggal Tertentu
-                        </option>
+                        </select>
 
-                        <option value="rentang">
-                            Rentang Tanggal
-                        </option>
-
-                        <option value="bulan">
-                            Periode
-                        </option>
-
-                    </select>
+                    </div>
 
                 </div>
 
