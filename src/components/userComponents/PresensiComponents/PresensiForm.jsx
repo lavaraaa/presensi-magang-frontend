@@ -323,7 +323,7 @@ const PresensiForm = () => {
                                         mb-3"
                             style={{
                                 width: "50%",
-                                height: "505px",
+                                height: "50%",
                             }}
                         >
 
