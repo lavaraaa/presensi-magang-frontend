@@ -1,50 +1,30 @@
-import React, {
-    useEffect,
-    useState,
-} from "react";
-
+import React, {useEffect, useState} from "react";
 import axios from "axios";
-
-import RekapPresensiFilter
-    from "../../components/adminComponents/RekapPresensiComponents/RekapPresensiFilter";
-
-import RekapPresensiTable
-    from "../../components/adminComponents/RekapPresensiComponents/RekapPresensiTable";
-
+import RekapPresensiFilter from "../../components/adminComponents/RekapPresensiComponents/RekapPresensiFilter";
+import RekapPresensiTable from "../../components/adminComponents/RekapPresensiComponents/RekapPresensiTable";
 import RekapPresensiExport from "../../components/adminComponents/RekapPresensiComponents/RekapPresensiExport";
 
 const RekapPresensi = () => {
-
     const [data, setData] = useState([]);
-
-    const [loading, setLoading] =
-        useState(true);
-
-    const [error, setError] =
-        useState("");
-
-
-    // ========================================
-    // FILTER
-    // ========================================
-
-    const [filterType, setFilterType] =
-        useState("semua");
-
-    const [tanggal, setTanggal] =
-        useState("");
-
-    const [tanggalMulai, setTanggalMulai] =
-        useState("");
-
-    const [tanggalAkhir, setTanggalAkhir] =
-        useState("");
+    const [loading, setLoading] = useState(true);
+    const [error, setError] = useState("");
+    const [filterType, setFilterType] = useState("semua");
+    const [tanggal, setTanggal] = useState("");
+    const [tanggalMulai, setTanggalMulai] = useState("");
+    const [tanggalAkhir, setTanggalAkhir] = useState("");
 
     const [periode, setPeriode] =
         useState("");
 
     const [search, setSearch] =
         useState("");
+
+    // ========================================
+    // FILTER STATUS
+    // ========================================
+
+    const [status, setStatus] =
+        useState("semua");
 
 
     // ========================================
@@ -212,6 +192,26 @@ const RekapPresensi = () => {
                             ?.toLowerCase()
                             .includes(keyword)
 
+                    );
+
+                });
+
+        }
+
+
+        // ========================================
+        // STATUS
+        // ========================================
+
+        if (status !== "semua") {
+
+            filteredKeys =
+                filteredKeys.filter((key) => {
+
+                    return grouped[key].some(
+                        (item) =>
+                            item.status?.toLowerCase() ===
+                            status.toLowerCase()
                     );
 
                 });
@@ -409,34 +409,47 @@ const RekapPresensi = () => {
                     FILTER
                 ======================================== */}
 
-                <RekapPresensiFilter
+                <div
+                    style={{
+                        width: "100%",
+                    }}
+                >
 
-                    filterType={filterType}
-                    setFilterType={setFilterType}
+                    <RekapPresensiFilter
 
-                    tanggal={tanggal}
-                    setTanggal={setTanggal}
+                        filterType={filterType}
+                        setFilterType={setFilterType}
 
-                    tanggalMulai={tanggalMulai}
-                    setTanggalMulai={setTanggalMulai}
+                        tanggal={tanggal}
+                        setTanggal={setTanggal}
 
-                    tanggalAkhir={tanggalAkhir}
-                    setTanggalAkhir={setTanggalAkhir}
+                        tanggalMulai={tanggalMulai}
+                        setTanggalMulai={setTanggalMulai}
 
-                    periode={periode}
-                    setPeriode={setPeriode}
+                        tanggalAkhir={tanggalAkhir}
+                        setTanggalAkhir={setTanggalAkhir}
 
-                    search={search}
-                    setSearch={setSearch}
+                        periode={periode}
+                        setPeriode={setPeriode}
 
-                    tanggalHariIni={
-                        tanggalHariIni
-                    }
+                        search={search}
+                        setSearch={setSearch}
 
-                />
+                        status={status}
+                        setStatus={setStatus}
+
+                        tanggalHariIni={
+                            tanggalHariIni
+                        }
+
+                    />
+
+                </div>
+
+
                 <RekapPresensiExport
-    data={filteredData}
-/>
+                    data={filteredData}
+                />
 
 
                 {/* ========================================
