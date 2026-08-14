@@ -266,7 +266,7 @@ const PresensiForm = () => {
 
         <div className="card shadow-sm">
 
-            <div className="card-body p-4">
+            <div className="card-body p-2">
 
 
                 {/* ========================================
@@ -302,7 +302,7 @@ const PresensiForm = () => {
                                 mb-3
                             "
                             style={{
-                                width: "90%"
+                                width: "95%"
                             }}
                         >
 
