@@ -1,4 +1,4 @@
-const API_URL = "http://localhost:5000/api";
+const API_URL = "https://presensi-magang-backend.vercel.app/api";
 
 export const login = async (email, password) => {
     const response = await fetch(`${API_URL}/auth/login`, {
