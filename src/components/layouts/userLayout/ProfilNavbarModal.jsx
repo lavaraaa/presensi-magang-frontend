@@ -81,7 +81,7 @@ const ProfilModal = () => {
             style={{ position: 'absolute', top: '50px', right: 0, minWidth: '160px' }}
             onClick={(e) => e.stopPropagation()}
           >
-            <li>
+            {/* <li>
               <button
                 className="dropdown-item"
                 onClick={() => {
@@ -91,7 +91,7 @@ const ProfilModal = () => {
               >
                 Profil
               </button>
-            </li>
+            </li> */}
             <li>
               <button
                 className="dropdown-item text-danger"

@@ -86,7 +86,7 @@ const UserNavbar = ({ isShifted }) => {
 
           <button className="navbar-brand btn d-lg-none position-absolute top-50 start-50 translate-middle d-flex align-items-center" onClick={() => handleNavigate('/dashboard')}>
             <img src={logo} alt="Logo" width="30" height="30" className="me-2" />
-            Portal Admin
+            Presensi Magang
           </button>
 
           <div className="d-none d-lg-block"
@@ -118,15 +118,15 @@ const UserNavbar = ({ isShifted }) => {
         style={{ width: '60%' }}
       >
         <div className="offcanvas-header flex-column align-items-start" style={{ paddingBottom: '0', background: '#015E78' }}>
-          <p className="ms-1 mb-3 fw-semibold" style={{ marginTop: 2, fontSize: '18px', color: '#fff' }}>Portal Admin</p>
+          <p className="ms-1 mb-3 fw-semibold" style={{ marginTop: 2, fontSize: '18px', color: '#fff' }}>Presensi Magang</p>
           <div
             className="rounded-circle bg-secondary d-flex justify-content-center align-items-center"
             style={{ width: '50px', height: '50px', color: '#fff', marginBottom: '8px' }}
           >
             <i className="bi bi-person-fill fs-4"></i>
           </div>
-          <p className="ms-2 mb-1 fw-bold" style={{ fontSize: '12px', color: '#fff' }}>{user?.username}</p>
-          <p className="mb-2 fw-semibold" style={{ fontSize: '0.7rem', color: '#fff' }}>Anda login sebagai {user?.role}</p>
+          <p className="ms-2 mb-1 fw-bold" style={{ fontSize: '12px', color: '#fff' }}>{name?.nama}</p>
+          <p className="mb-2 fw-semibold" style={{ fontSize: '0.7rem', color: '#fff' }}>Anda login sebagai {name?.role}</p>
           <button type="button" className="btn-close btn-close-white position-absolute end-0 top-0 m-3" data-bs-dismiss="offcanvas" aria-label="Close" />
         </div>
 
