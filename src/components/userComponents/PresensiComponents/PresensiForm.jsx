@@ -298,11 +298,10 @@ const PresensiForm = () => {
                                 d-flex
                                 align-items-center
                                 justify-content-center
-                                mx-auto
-                                mb-3
+                                mb-1
                             "
                             style={{
-                                width: "95%"
+                                width: "100%"
                             }}
                         >
 

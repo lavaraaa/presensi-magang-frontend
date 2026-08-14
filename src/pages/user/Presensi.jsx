@@ -8,7 +8,6 @@ const Presensi = () => {
             style={{
                 minHeight: "100vh",
                 backgroundColor: "#f5f6f8",
-                padding: "5px",
             }}
         >
 
