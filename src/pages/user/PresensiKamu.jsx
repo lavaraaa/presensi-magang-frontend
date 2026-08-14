@@ -276,14 +276,14 @@ const PresensiKamu = () => {
             }}
         >
 
-            <main className="container-fluid p-4">
+            <main className="container-fluid p-2">
 
 
                 {/* ========================================
                     HEADER
                 ======================================== */}
 
-                <div className="mb-4">
+                <div className="mb-2">
 
                     <h3 className="mb-1">
 

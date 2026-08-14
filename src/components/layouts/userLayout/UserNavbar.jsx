@@ -85,7 +85,7 @@ const UserNavbar = ({ isShifted }) => {
           </div>
 
           <button className="navbar-brand btn d-lg-none position-absolute top-50 start-50 translate-middle d-flex align-items-center" onClick={() => handleNavigate('/dashboard')}>
-            <img src={logo} alt="Logo" width="30" height="30" className="me-2" />
+            {/* <img src={logo} alt="Logo" width="30" height="30" className="me-2" /> */}
             Presensi Magang
           </button>
 
@@ -125,8 +125,8 @@ const UserNavbar = ({ isShifted }) => {
           >
             <i className="bi bi-person-fill fs-4"></i>
           </div>
-          <p className="ms-2 mb-1 fw-bold" style={{ fontSize: '12px', color: '#fff' }}>{name?.nama}</p>
-          <p className="mb-2 fw-semibold" style={{ fontSize: '0.7rem', color: '#fff' }}>Anda login sebagai {name?.role}</p>
+          <p className="ms-2 mb-1 fw-bold" style={{ fontSize: '12px', color: '#fff' }}>{user?.name || "-"}</p>
+          <p className="mb-2 fw-semibold" style={{ fontSize: '0.7rem', color: '#fff' }}>Anda login sebagai {user?.name || "-"}</p>
           <button type="button" className="btn-close btn-close-white position-absolute end-0 top-0 m-3" data-bs-dismiss="offcanvas" aria-label="Close" />
         </div>
 

@@ -2,31 +2,20 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 
 const PresensiForm = () => {
-
     const [jenis, setJenis] = useState("datang");
-
     const [status, setStatus] = useState("");
-
     const [keterangan, setKeterangan] = useState("");
-
     const [loading, setLoading] = useState(false);
-
     const [error, setError] = useState("");
-
     const [success, setSuccess] = useState("");
-
     const [presensiHariIni, setPresensiHariIni] = useState({
         datang: false,
         pulang: false,
     });
-
-
     // ========================================
     // FORMAT TANGGAL
     // ========================================
-
     const tanggalHariIni = new Date();
-
     const tanggalText =
         tanggalHariIni.toLocaleDateString(
             "id-ID",
@@ -37,8 +26,6 @@ const PresensiForm = () => {
                 year: "numeric",
             }
         );
-
-
     // ========================================
     // CEK PRESENSI HARI INI
     // ========================================
@@ -238,15 +225,9 @@ const PresensiForm = () => {
                 "Presensi berhasil."
             );
 
-
             setStatus("");
-
             setKeterangan("");
-
-
             await fetchPresensiHariIni();
-
-
         } catch (error) {
 
             console.error(
@@ -296,7 +277,7 @@ const PresensiForm = () => {
                     Presensi
                 </h5>
 
-                <p className="text-muted mb-4">
+                <p className="text-muted mb-2">
                     Silakan lakukan presensi Anda hari ini.
                 </p>
 
@@ -321,8 +302,7 @@ const PresensiForm = () => {
                                 mb-3
                             "
                             style={{
-                                width: "80px",
-                                height: "80px",
+                                width: "90%"
                             }}
                         >
 
@@ -545,7 +525,10 @@ const PresensiForm = () => {
                             />
 
                         </div>
-
+  <div className="alert alert-info mt-4">
+                <i className="bi bi-info-circle me-2"></i>
+               Bohong : DOSAAA!!!
+            </div>
 
                         {/* ========================================
                             ERROR

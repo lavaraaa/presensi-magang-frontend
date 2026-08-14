@@ -13,24 +13,8 @@ const Presensi = () => {
         >
 
             <div className="container">
-
-                <div className="mb-4">
-
-                    <h3 className="mb-1">
-                        Presensi
-                    </h3>
-
-                    <p className="text-muted mb-0">
-                        Silakan lakukan presensi datang atau pulang.
-                    </p>
-
-                </div>
-
-
                 <PresensiForm />
-
             </div>
-
         </div>
     );
 };
