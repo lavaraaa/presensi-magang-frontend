@@ -11,6 +11,7 @@ const Login = () => {
 
     const [message, setMessage] = useState("");
     const [loading, setLoading] = useState(false);
+    const [showPassword, setShowPassword] = useState(false);
 
     const { login } = useContext(AuthContext);
     const navigate = useNavigate();
@@ -131,18 +132,49 @@ const Login = () => {
                                 Kata Sandi
                             </label>
 
-                            <input
-                                name="password"
-                                type="password"
-                                className="form-control"
-                                value={formData.password}
-                                onChange={handleChange}
-                                required
-                                placeholder="Masukkan Kata Sandi"
-                                style={{
-                                    fontSize: "15px",
-                                }}
-                            />
+                            <div style={{ position: "relative" }}>
+
+                                <input
+                                    name="password"
+                                    type={showPassword ? "text" : "password"}
+                                    className="form-control"
+                                    value={formData.password}
+                                    onChange={handleChange}
+                                    required
+                                    placeholder="Masukkan Kata Sandi"
+                                    style={{
+                                        fontSize: "15px",
+                                        paddingRight: "45px",
+                                    }}
+                                />
+
+                                <button
+                                    type="button"
+                                    onClick={() =>
+                                        setShowPassword(!showPassword)
+                                    }
+                                    style={{
+                                        position: "absolute",
+                                        right: "10px",
+                                        top: "50%",
+                                        transform: "translateY(-50%)",
+                                        border: "none",
+                                        background: "transparent",
+                                        padding: "0",
+                                        cursor: "pointer",
+                                        fontSize: "18px",
+                                        lineHeight: 1,
+                                    }}
+                                    aria-label={
+                                        showPassword
+                                            ? "Sembunyikan kata sandi"
+                                            : "Lihat kata sandi"
+                                    }
+                                >
+                                    {showPassword ? "🙈" : "👁️"}
+                                </button>
+
+                            </div>
 
                         </div>
 
