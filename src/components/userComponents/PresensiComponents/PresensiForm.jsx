@@ -289,20 +289,20 @@ const PresensiForm = () => {
                 {sudahPresensiPulang ? (
 
                     <div className="text-center py-5">
-
                         <div
                             className="
-                                rounded-circle
-                                bg-success
-                                bg-opacity-10
-                                d-flex
-                                align-items-center
-                                justify-content-center
-                                mx-auto
-                                mb-3
+                                      rounded-circle
+                                     bg-success
+                                    bg-opacity-10
+                                    d-flex
+        align-items-center
+        justify-content-center
+        mx-auto
+        mb-3
                             "
                             style={{
-                                width: "90%"
+                                width: "90%",
+                                height:"100vh",
                             }}
                         >
 
