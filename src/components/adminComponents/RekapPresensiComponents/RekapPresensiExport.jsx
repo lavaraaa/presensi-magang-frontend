@@ -474,7 +474,7 @@ const getStatus = (item) => {
                 <table>
                     <thead>
                         <tr>
-                            <th style="width: 9%;">
+                            <th style="width: 5%;">
                                 Tanggal
                             </th>
 
@@ -486,15 +486,15 @@ const getStatus = (item) => {
                                 Email
                             </th>
 
-                            <th style="width: 7%;">
+                            <th style="width: 5%;">
                                 Datang
                             </th>
 
-                            <th style="width: 7%;">
+                            <th style="width: 5%;">
                                 Pulang
                             </th>
 
-                            <th style="width: 9%;">
+                            <th style="width: 5%;">
                                 Status
                             </th>
 
@@ -502,7 +502,7 @@ const getStatus = (item) => {
                                 Keterangan
                             </th>
 
-                            <th style="width: 18%;">
+                            <th style="width: 10%;">
                                 Lokasi
                             </th>
                         </tr>
