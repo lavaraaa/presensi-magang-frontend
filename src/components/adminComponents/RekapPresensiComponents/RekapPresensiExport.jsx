@@ -129,15 +129,15 @@ const getStatus = (item) => {
             body: tableData,
             theme: "grid",
             styles:{font: "helvetica",
-                    fontSize: 7,
-                    cellPadding: 2.5,
+                    fontSize: 12,
+                    cellPadding: 1,
                     overflow: "linebreak",
                     valign: "middle",
                     lineWidth: 0.2,
             },
 
             headStyles: {
-            fontSize: 7,
+            fontSize: 12,
             fontStyle: "bold",
             halign: "center",
             valign: "middle",
@@ -192,7 +192,7 @@ const getStatus = (item) => {
             },
 
     didParseCell: (hookData) => {
-        if ( hookData.section === "body" && hookData.column.index === 5
+        if ( hookData.section === "body" && hookData.column.index === 6
              ) {
 
         const status = hookData.cell.raw;
@@ -271,6 +271,10 @@ const getStatus = (item) => {
         rows.forEach((item) => { const status = getStatus(item);
             tableRows += `
                 <tr>
+                    <td class="center no">
+                        ${index +1}
+                    </td>
+
                     <td>
                         ${formatTanggal(
                             item.tanggal
@@ -463,6 +467,9 @@ const getStatus = (item) => {
                 <table>
                     <thead>
                         <tr>
+                            <th style="width: 3%;">
+                            No.
+                            </th>
                             <th style="width: 5%;">
                                 Tanggal
                             </th>
