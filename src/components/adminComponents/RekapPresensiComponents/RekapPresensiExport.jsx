@@ -9,7 +9,6 @@ const RekapPresensiExport = ({
     tanggalMulai,
     tanggalAkhir,
     periode,
-    search,
     status,
 }) => {
 const formatTanggal = (tanggal) => {
@@ -84,16 +83,26 @@ const getStatus = (item) => {
     // KETERANGAN FILTER
     // ========================================
 
-    const getFilterInfo = () => {
+    const getFilterInfo = (rows) => {
         const filters = [];
 
-        if (search?.trim()) {
+        // Nama peserta diambil langsung dari data database
+        const uniqueNames = [
+            ...new Set(
+                rows
+                    .map((item) => item.nama)
+                    .filter(Boolean)
+            ),
+        ];
+
+        if (uniqueNames.length > 0) {
             filters.push({
-                label: "Pencarian",
-                value: search.trim(),
+                label: "Nama Peserta",
+                value: uniqueNames.join(", "),
             });
         }
 
+        // Tanggal tertentu
         if (filterType === "tanggal" && tanggal) {
             filters.push({
                 label: "Tanggal",
@@ -101,6 +110,7 @@ const getStatus = (item) => {
             });
         }
 
+        // Rentang tanggal
         if (
             filterType === "rentang" &&
             tanggalMulai &&
@@ -112,6 +122,7 @@ const getStatus = (item) => {
             });
         }
 
+        // Periode
         if (filterType === "bulan" && periode) {
             const [start, end] = periode.split("|");
 
@@ -121,6 +132,7 @@ const getStatus = (item) => {
             });
         }
 
+        // Status
         if (status && status !== "semua") {
             filters.push({
                 label: "Status",
@@ -163,7 +175,7 @@ const getStatus = (item) => {
         // KETERANGAN FILTER PDF
         // ========================================
 
-        const filterInfo = getFilterInfo();
+        const filterInfo = getFilterInfo(rows);
 
         let infoY = 23;
 
@@ -219,7 +231,7 @@ const getStatus = (item) => {
             body: tableData,
             theme: "grid",
             styles:{font: "helvetica",
-                    fontSize: 9,
+                    fontSize: 10,
                     cellPadding: 1,
                     overflow: "linebreak",
                     valign: "middle",
@@ -227,7 +239,7 @@ const getStatus = (item) => {
             },
 
             headStyles: {
-            fontSize: 9,
+            fontSize: 10,
             fontStyle: "bold",
             halign: "center",
             valign: "middle",
@@ -245,37 +257,37 @@ const getStatus = (item) => {
 
                 2: {
                     cellWidth: 42,
-                    halign: "left",
+                    halign: "center",
                 },
 
                 3: {
                     cellWidth: 48,
-                    halign: "left",
+                    halign: "center",
                 },
 
                 4: {
-                    cellWidth: 20,
+                    cellWidth: 22,
                     halign: "center",
                 },
 
                 5: {
 
-                    cellWidth: 20,
+                    cellWidth: 22,
                     halign: "center",
                 },
 
                 6: {
-                    cellWidth: 20,
+                    cellWidth: 45,
                     halign: "center",
                 },
 
                 7: {
                     cellWidth: 45, 
-                    halign: "left",
+                    halign: "center",
 
                 },
                  8: {
-                    cellWidth: 45,
+                    cellWidth: 49,
                     halign: "center",
 
                 },
@@ -362,7 +374,7 @@ const getStatus = (item) => {
         // KETERANGAN FILTER CETAK
         // ========================================
 
-        const filterInfo = getFilterInfo();
+        const filterInfo = getFilterInfo(rows);
 
         const filterHTML = filterInfo
             .map(
