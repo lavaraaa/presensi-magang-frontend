@@ -2,7 +2,16 @@ import React from "react";
 import jsPDF from "jspdf";
 import autoTable from "jspdf-autotable";
 
-const RekapPresensiExport = ({ data }) => {
+const RekapPresensiExport = ({
+    data,
+    filterType,
+    tanggal,
+    tanggalMulai,
+    tanggalAkhir,
+    periode,
+    search,
+    status,
+}) => {
 const formatTanggal = (tanggal) => {
 const date = new Date(tanggal);
 const day = String(date.getDate()).padStart(2, "0");
@@ -70,6 +79,61 @@ const getStatus = (item) => {
         return "Tidak Hadir";
     };
 
+
+    // ========================================
+    // KETERANGAN FILTER
+    // ========================================
+
+    const getFilterInfo = () => {
+        const filters = [];
+
+        if (search?.trim()) {
+            filters.push({
+                label: "Pencarian",
+                value: search.trim(),
+            });
+        }
+
+        if (filterType === "tanggal" && tanggal) {
+            filters.push({
+                label: "Tanggal",
+                value: formatTanggal(tanggal),
+            });
+        }
+
+        if (
+            filterType === "rentang" &&
+            tanggalMulai &&
+            tanggalAkhir
+        ) {
+            filters.push({
+                label: "Rentang Tanggal",
+                value: `${formatTanggal(tanggalMulai)} s/d ${formatTanggal(tanggalAkhir)}`,
+            });
+        }
+
+        if (filterType === "bulan" && periode) {
+            const [start, end] = periode.split("|");
+
+            filters.push({
+                label: "Periode",
+                value: `${formatTanggal(start)} s/d ${formatTanggal(end)}`,
+            });
+        }
+
+        if (status && status !== "semua") {
+            filters.push({
+                label: "Status",
+                value:
+                    status.charAt(0).toUpperCase() +
+                    status.slice(1),
+            });
+        }
+
+        return filters;
+    };
+
+
     const handleExportPDF = () => {
     const rows = getRows();
         if (rows.length === 0) { alert( "Tidak ada data presensi untuk diekspor."
@@ -94,6 +158,31 @@ const getStatus = (item) => {
             }
         );
 
+
+        // ========================================
+        // KETERANGAN FILTER PDF
+        // ========================================
+
+        const filterInfo = getFilterInfo();
+
+        let infoY = 23;
+
+        if (filterInfo.length > 0) {
+            doc.setFont("helvetica", "normal");
+            doc.setFontSize(9);
+
+            filterInfo.forEach((filter) => {
+                doc.text(
+                    `${filter.label} : ${filter.value}`,
+                    margin,
+                    infoY
+                );
+
+                infoY += 5;
+            });
+        }
+
+
         const tableData = rows.map((item, index) => [
             index + 1,
             formatTanggal( item.tanggal),
@@ -107,7 +196,8 @@ const getStatus = (item) => {
             item.lokasi || "Puskesmas Mandiraja 2",
         ]);
 
-        autoTable(doc, { startY: 25,
+        autoTable(doc, { 
+        startY: filterInfo.length > 0 ? infoY + 2 : 25,
         margin: {
                 left: margin,
                 right: margin,
@@ -164,18 +254,18 @@ const getStatus = (item) => {
                 },
 
                 4: {
-                    cellWidth: 22,
+                    cellWidth: 20,
                     halign: "center",
                 },
 
                 5: {
 
-                    cellWidth: 22,
+                    cellWidth: 20,
                     halign: "center",
                 },
 
                 6: {
-                    cellWidth: 22,
+                    cellWidth: 20,
                     halign: "center",
                 },
 
@@ -185,7 +275,7 @@ const getStatus = (item) => {
 
                 },
                  8: {
-                    cellWidth: 49,
+                    cellWidth: 45,
                     halign: "center",
 
                 },
@@ -266,6 +356,25 @@ const getStatus = (item) => {
             );
         return;
     }
+
+
+        // ========================================
+        // KETERANGAN FILTER CETAK
+        // ========================================
+
+        const filterInfo = getFilterInfo();
+
+        const filterHTML = filterInfo
+            .map(
+                (filter) => `
+                    <div class="filter-info">
+                        <strong>${filter.label}</strong> :
+                        ${filter.value}
+                    </div>
+                `
+            )
+            .join("");
+
 
         let tableRows = "";
         rows.forEach((item, index) => { const status = getStatus(item);
@@ -383,6 +492,12 @@ const getStatus = (item) => {
                         color: #555;
                     }
 
+                    .filter-info {
+                        text-align: left;
+                        font-size: 10px;
+                        margin-bottom: 4px;
+                    }
+
                     table {
                         width: 100%;
                         border-collapse: collapse;
@@ -464,6 +579,9 @@ const getStatus = (item) => {
                         Batch 1 Angkatan 2 Tahun 2026 (10 Agustus 2026 - 09 Februari 2027)
                     </p>
                 </div>
+
+                ${filterHTML}
+
                 <table>
                     <thead>
                         <tr>

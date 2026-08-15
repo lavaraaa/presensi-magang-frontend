@@ -434,8 +434,15 @@ const RekapPresensi = () => {
                     }
 
                 />
-                <RekapPresensiExport
+            <RekapPresensiExport
     data={filteredData}
+    filterType={filterType}
+    tanggal={tanggal}
+    tanggalMulai={tanggalMulai}
+    tanggalAkhir={tanggalAkhir}
+    periode={periode}
+    search={search}
+    status={status}
 />
 
 
