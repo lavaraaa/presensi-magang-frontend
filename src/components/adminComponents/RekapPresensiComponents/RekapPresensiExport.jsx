@@ -9,6 +9,7 @@ const RekapPresensiExport = ({
     tanggalMulai,
     tanggalAkhir,
     periode,
+    search,
     status,
 }) => {
 const formatTanggal = (tanggal) => {
@@ -79,30 +80,31 @@ const getStatus = (item) => {
     };
 
 
-    // ========================================
-    // KETERANGAN FILTER
-    // ========================================
-
+    // TAMBAHAN: mengambil keterangan filter yang sedang digunakan
     const getFilterInfo = (rows) => {
         const filters = [];
 
-        // Nama peserta diambil langsung dari data database
-        const uniqueNames = [
-            ...new Set(
-                rows
-                    .map((item) => item.nama)
-                    .filter(Boolean)
-            ),
-        ];
+        // Nama:
+        // search hanya menentukan bahwa filter nama sedang digunakan.
+        // Nama lengkap diambil dari data database (rows).
+        if (search?.trim()) {
+            const uniqueNames = [
+                ...new Set(
+                    rows
+                        .map((item) => item.nama || item.name)
+                        .filter(Boolean)
+                ),
+            ];
 
-        if (uniqueNames.length > 0) {
-            filters.push({
-                label: "Nama Peserta",
-                value: uniqueNames.join(", "),
-            });
+            if (uniqueNames.length > 0) {
+                filters.push({
+                    label: "Nama",
+                    value: uniqueNames.join(", "),
+                });
+            }
         }
 
-        // Tanggal tertentu
+        // Filter tanggal tertentu
         if (filterType === "tanggal" && tanggal) {
             filters.push({
                 label: "Tanggal",
@@ -110,7 +112,7 @@ const getStatus = (item) => {
             });
         }
 
-        // Rentang tanggal
+        // Filter rentang tanggal
         if (
             filterType === "rentang" &&
             tanggalMulai &&
@@ -122,7 +124,7 @@ const getStatus = (item) => {
             });
         }
 
-        // Periode
+        // Filter periode
         if (filterType === "bulan" && periode) {
             const [start, end] = periode.split("|");
 
@@ -132,7 +134,7 @@ const getStatus = (item) => {
             });
         }
 
-        // Status
+        // Filter status
         if (status && status !== "semua") {
             filters.push({
                 label: "Status",
@@ -171,10 +173,7 @@ const getStatus = (item) => {
         );
 
 
-        // ========================================
-        // KETERANGAN FILTER PDF
-        // ========================================
-
+        // TAMBAHAN: keterangan filter PDF
         const filterInfo = getFilterInfo(rows);
 
         let infoY = 23;
@@ -209,6 +208,7 @@ const getStatus = (item) => {
         ]);
 
         autoTable(doc, { 
+        // TAMBAHAN: posisi tabel menyesuaikan keterangan filter
         startY: filterInfo.length > 0 ? infoY + 2 : 25,
         margin: {
                 left: margin,
@@ -231,7 +231,7 @@ const getStatus = (item) => {
             body: tableData,
             theme: "grid",
             styles:{font: "helvetica",
-                    fontSize: 10,
+                    fontSize: 9,
                     cellPadding: 1,
                     overflow: "linebreak",
                     valign: "middle",
@@ -239,7 +239,7 @@ const getStatus = (item) => {
             },
 
             headStyles: {
-            fontSize: 10,
+            fontSize: 9,
             fontStyle: "bold",
             halign: "center",
             valign: "middle",
@@ -257,37 +257,37 @@ const getStatus = (item) => {
 
                 2: {
                     cellWidth: 42,
-                    halign: "center",
+                    halign: "left",
                 },
 
                 3: {
                     cellWidth: 48,
-                    halign: "center",
+                    halign: "left",
                 },
 
                 4: {
-                    cellWidth: 22,
+                    cellWidth: 20,
                     halign: "center",
                 },
 
                 5: {
 
-                    cellWidth: 22,
+                    cellWidth: 20,
                     halign: "center",
                 },
 
                 6: {
-                    cellWidth: 45,
+                    cellWidth: 20,
                     halign: "center",
                 },
 
                 7: {
                     cellWidth: 45, 
-                    halign: "center",
+                    halign: "left",
 
                 },
                  8: {
-                    cellWidth: 49,
+                    cellWidth: 45,
                     halign: "center",
 
                 },
@@ -370,10 +370,7 @@ const getStatus = (item) => {
     }
 
 
-        // ========================================
-        // KETERANGAN FILTER CETAK
-        // ========================================
-
+        // TAMBAHAN: keterangan filter untuk cetak
         const filterInfo = getFilterInfo(rows);
 
         const filterHTML = filterInfo
@@ -504,11 +501,14 @@ const getStatus = (item) => {
                         color: #555;
                     }
 
+
+                    /* TAMBAHAN: style keterangan filter */
                     .filter-info {
                         text-align: left;
                         font-size: 10px;
                         margin-bottom: 4px;
                     }
+
 
                     table {
                         width: 100%;
