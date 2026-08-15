@@ -129,7 +129,7 @@ const getStatus = (item) => {
             body: tableData,
             theme: "grid",
             styles:{font: "helvetica",
-                    fontSize: 12,
+                    fontSize: 9,
                     cellPadding: 1,
                     overflow: "linebreak",
                     valign: "middle",
@@ -137,7 +137,7 @@ const getStatus = (item) => {
             },
 
             headStyles: {
-            fontSize: 12,
+            fontSize: 9,
             fontStyle: "bold",
             halign: "center",
             valign: "middle",
@@ -155,12 +155,12 @@ const getStatus = (item) => {
 
                 2: {
                     cellWidth: 42,
-                    halign: "center",
+                    halign: "left",
                 },
 
                 3: {
                     cellWidth: 48,
-                    halign: "center",
+                    halign: "left",
                 },
 
                 4: {
@@ -175,13 +175,13 @@ const getStatus = (item) => {
                 },
 
                 6: {
-                    cellWidth: 45,
+                    cellWidth: 22,
                     halign: "center",
                 },
 
                 7: {
                     cellWidth: 45, 
-                    halign: "center",
+                    halign: "left",
 
                 },
                  8: {
@@ -268,7 +268,7 @@ const getStatus = (item) => {
     }
 
         let tableRows = "";
-        rows.forEach((item) => { const status = getStatus(item);
+        rows.forEach((item, index) => { const status = getStatus(item);
             tableRows += `
                 <tr>
                     <td class="center no">
