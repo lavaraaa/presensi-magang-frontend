@@ -94,27 +94,29 @@ const getStatus = (item) => {
             }
         );
 
-        const tableData = rows.map((item) => [
+        const tableData = rows.map((item, index) => [
+            index + 1,
             formatTanggal( item.tanggal),
-
-                item.nama || "-",
-                item.email || "-",
-                item.datang ? formatJam( item.datang.created_at) : "-",
-                item.pulang ? formatJam(
-                item.pulang.created_at) : "-",
-                getStatus(item),
-                item.keterangan || "-",
-                item.lokasi || "Puskesmas Mandiraja 2",
-            ]);
+            item.nama || "-",
+            item.email || "-",
+            item.datang ? formatJam( item.datang.created_at) : "-",
+            item.pulang ? formatJam(
+            item.pulang.created_at) : "-",
+            getStatus(item),
+            item.keterangan || "-",
+            item.lokasi || "Puskesmas Mandiraja 2",
+        ]);
 
         autoTable(doc, { startY: 25,
-            margin: {
+        margin: {
                 left: margin,
                 right: margin,
             },
 
             tableWidth: pageWidth - (margin * 2),
-            head: [["Tanggal",
+            head: [[
+                    "No.",
+                    "Tanggal",
                     "Nama",
                     "Email",
                     "Datang",
@@ -122,7 +124,8 @@ const getStatus = (item) => {
                     "Status",
                     "Keterangan",
                     "Lokasi",
-            ]],
+                ]],
+
             body: tableData,
             theme: "grid",
             styles:{font: "helvetica",
@@ -140,65 +143,51 @@ const getStatus = (item) => {
             valign: "middle",
             },
 
-            columnStyles: { 0: {
-            cellWidth: 24,
-            halign: "center",
+            columnStyles: {
+            0: {
+                cellWidth: 10,
+                halign: "center",
             },
                 1: {
-
-                    cellWidth:
-                        42,
-
+                    cellWidth: 24,
+                    halign: "center",
                 },
 
                 2: {
-
-                    cellWidth:
-                        48,
-
+                    cellWidth: 42,
+                    halign: "center",
                 },
 
                 3: {
-
-                    cellWidth:
-                        22,
-
-                    halign:
-                        "center",
-
+                    cellWidth: 48,
+                    halign: "center",
                 },
 
                 4: {
-
-                    cellWidth:
-                        22,
-
-                    halign:
-                        "center",
-
+                    cellWidth: 22,
+                    halign: "center",
                 },
 
                 5: {
 
-                    cellWidth:
-                        25,
-
-                    halign:
-                        "center",
-
+                    cellWidth: 22,
+                    halign: "center",
                 },
 
                 6: {
-
-                    cellWidth:
-                        45,
-
+                    cellWidth: 45,
+                    halign: "center",
                 },
 
                 7: {
+                    cellWidth: 45, 
+                    halign: "center",
 
-                    cellWidth:
-                        49,
+                },
+                 8: {
+                    cellWidth: 49,
+                    halign: "center",
+
                 },
             },
 
