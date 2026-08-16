@@ -58,7 +58,7 @@ const UserNavbar = ({ isShifted }) => {
   const menuItems = [
     { label: "Dashboard", path: "/dashboard", icon: "bi bi-house-door-fill" },
     { label: "Presensi", path: "/presensi", icon: "bi-map-fill" },
-     { label: "Presensi Kamu", path: "/presensi-kamu", icon: "bi-map-fill" },
+     { label: "Riwayat Presensi", path: "/presensi-kamu", icon: "bi-map-fill" },
   ];
 
   const currentPath = window.location.pathname;

@@ -31,7 +31,7 @@ const UserSidebar = () => {
             icon: "bi-calendar-check-fill",
         },
         {
-            label: "Presensi Kamu",
+            label: "Riwayat Presensi",
             path: "/presensi-kamu",
             icon: "bi-file-earmark-text-fill",
         },
