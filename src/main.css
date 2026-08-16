@@ -69,17 +69,16 @@ html {
     background-color: #ffffff !important;
   }
   
-.presensi-table-scroll {
-    width: 100%;
+.presensi-table-wrapper {
+    width: 0;
+    min-width: 100%;
     max-width: 100%;
-    min-width: 0;
     overflow-x: auto;
     overflow-y: hidden;
     -webkit-overflow-scrolling: touch;
 }
 
-.presensi-table-scroll table {
+.presensi-table-wrapper table {
     width: max-content;
     min-width: 100%;
 }
-  

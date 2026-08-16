@@ -183,7 +183,7 @@ const PresensiTable = ({ data }) => {
 
 
     return (
-       <div className="table-responsive presensi-table-scroll">
+    <div className="presensi-table-wrapper">
             <table
                 className="
                     table
