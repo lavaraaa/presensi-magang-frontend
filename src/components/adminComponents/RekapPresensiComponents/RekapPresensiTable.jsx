@@ -136,7 +136,7 @@ const RekapPresensiTable = ({ data }) => {
 
     return (
 
-        <div className="table-responsive">
+       <div className="presensi-table-wrapper">
 
             <table className="table table-hover align-middle mb-0">
 
