@@ -183,9 +183,7 @@ const PresensiTable = ({ data }) => {
 
 
     return (
-
-        <div className="table-responsive">
-
+       <div className="table-responsive presensi-table-scroll">
             <table
                 className="
                     table
@@ -194,11 +192,8 @@ const PresensiTable = ({ data }) => {
                     mb-0
                 "
             >
-
                 <thead>
-
                     <tr>
-
                         <th>
                             Tanggal
                         </th>
