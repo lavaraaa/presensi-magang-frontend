@@ -12,7 +12,7 @@ const UserTable = ({
 
             <div className="card-body p-0">
 
-                <div className="table-responsive">
+                <div className="presensi-table-wrapper">
 
                     <table className="table table-hover align-middle mb-0">
 
