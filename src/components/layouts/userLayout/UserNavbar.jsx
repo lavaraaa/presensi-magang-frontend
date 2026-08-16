@@ -115,7 +115,7 @@ const UserNavbar = ({ isShifted }) => {
         tabIndex="-1"
         id="sidebarMenu"
         aria-labelledby="sidebarMenuLabel"
-        style={{ width: '60%' }}
+        style={{ width: '65%' }}
       >
         <div className="offcanvas-header flex-column align-items-start" style={{ paddingBottom: '0', background: '#015E78' }}>
           <p className="ms-1 mb-3 fw-semibold" style={{ marginTop: 2, fontSize: '18px', color: '#fff' }}>Presensi Magang</p>
