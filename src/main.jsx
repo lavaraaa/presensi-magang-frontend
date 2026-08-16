@@ -17,7 +17,7 @@ axios.defaults.baseURL = "https://presensi-magang-backend.vercel.app/api";
 const link = document.createElement("link");
 link.rel = "icon";
 link.type = "image/png";
-link.href = logoputih;
+link.href = hero;
 document.head.appendChild(link);
 
 ReactDOM.createRoot(document.getElementById("root")).render(
