@@ -1,27 +1,14 @@
 import React from "react";
-
 import PresensiStatus from "./PresensiStatus";
-
 
 const formatTanggal = (tanggal) => {
 
-    const date = new Date(tanggal);
-
-    const day = String(
-        date.getDate()
-    ).padStart(2, "0");
-
-    const month = String(
-        date.getMonth() + 1
-    ).padStart(2, "0");
-
-    const year =
-        date.getFullYear();
-
+const date = new Date(tanggal);
+const day = String(date.getDate()).padStart(2, "0");
+const month = String(date.getMonth() + 1).padStart(2, "0");
+const year = date.getFullYear();
     return `${day}-${month}-${year}`;
-
 };
-
 
 const formatJam = (tanggal) => {
 
@@ -29,133 +16,60 @@ const formatJam = (tanggal) => {
         return "-";
     }
 
-    const date = new Date(tanggal);
-
-    const hours = String(
-        date.getHours()
-    ).padStart(2, "0");
-
-    const minutes = String(
-        date.getMinutes()
-    ).padStart(2, "0");
-
+const date = new Date(tanggal);
+const hours = String(date.getHours()).padStart(2, "0");
+const minutes = String(date.getMinutes()).padStart(2, "0");
     return `${hours}:${minutes}`;
-
 };
 
-
 const PresensiTable = ({ data }) => {
-
-    // ========================================
-    // DATA DARI BACKEND
-    // DIKELOMPOKKAN BERDASARKAN TANGGAL
-    // ========================================
-
-    const grouped = {};
-
-
-    data.forEach((item) => {
-
-        const date =
-            new Date(item.created_at);
-
-        const key =
+const grouped = {};
+  data.forEach((item) => {
+const date = new Date(item.created_at);
+const key =
             `${date.getFullYear()}-${String(
                 date.getMonth() + 1
             ).padStart(2, "0")}-${String(
                 date.getDate()
             ).padStart(2, "0")}`;
 
-
         if (!grouped[key]) {
-
             grouped[key] = {
 
-                tanggal:
-                    item.created_at,
-
-               nama:
-    item.nama || "-",
-
+                tanggal: item.created_at,
+               nama: item.nama || "-",
                 datang: null,
-
                 pulang: null,
-
                 status: null,
-
                 keterangan: "",
-
-                lokasi:
-                    item.lokasi ||
-                    "Puskesmas Mandiraja 2",
-
+                lokasi:item.lokasi || "Puskesmas Mandiraja 2",
             };
-
         }
-
-
-        // ========================================
-        // DATANG
-        // ========================================
 
         if (item.jenis === "datang") {
-
             grouped[key].datang = item;
-
-
-            grouped[key].status =
-                item.status;
-
-
-            grouped[key].keterangan =
-                item.keterangan || "";
-
-            grouped[key].lokasi =
-                item.lokasi ||
-                "Puskesmas Mandiraja 2";
-
+            grouped[key].status = item.status;
+            grouped[key].keterangan = item.keterangan || "";
+            grouped[key].lokasi = item.lokasi || "Puskesmas Mandiraja 2";
         }
 
-
-        // ========================================
-        // PULANG
-        // ========================================
-
-        if (item.jenis === "pulang") {
-
-            grouped[key].pulang = item;
-
+        if (item.jenis === "pulang") { grouped[key].pulang = item;
         }
-
     });
 
-
-    const rows =
-        Object.values(grouped);
-
-
-    // ========================================
-    // TENTUKAN STATUS
-    // ========================================
-
+    const rows = Object.values(grouped);
     const getStatus = (item) => {
 
         if (
-            !item.datang &&
-            !item.pulang
+            !item.datang && !item.pulang
         ) {
-
             return "tidak hadir";
-
         }
-
 
         if (
             item.datang?.status === "izin"
         ) {
-
             return "izin";
-
         }
 
 
@@ -184,49 +98,18 @@ const PresensiTable = ({ data }) => {
 
     return (
     <div className="presensi-table-wrapper">
-            <table
-                className="
-                    table
-                    table-hover
-                    align-middle
-                    mb-0
-                "
-            >
+            <table className=" table table-hover align-middle mb-0">
                 <thead>
                     <tr>
-                        <th>
-                            Tanggal
-                        </th>
-
-                        <th>
-                            Nama
-                        </th>
-
-                        <th>
-                            Datang
-                        </th>
-
-                        <th>
-                            Pulang
-                        </th>
-
-                        <th>
-                            Status
-                        </th>
-
-                        <th>
-                            Keterangan
-                        </th>
-
-                        <th>
-                            Lokasi
-                        </th>
-
+                        <th> Tanggal </th>
+                        <th>  Nama </th>
+                        <th> Datang </th>
+                        <th> Pulang </th>
+                        <th> Status </th>
+                        <th> Keterangan </th>
+                        <th> Lokasi </th>
                     </tr>
-
                 </thead>
-
-
                 <tbody>
 
                     {rows.map((item, index) => {

@@ -13,9 +13,6 @@ const PresensiForm = () => {
         pulang: false,
     });
 
-    // ========================================
-    // FORMAT TANGGAL
-    // ========================================
     const tanggalHariIni = new Date();
     const tanggalText =
         tanggalHariIni.toLocaleDateString(
@@ -28,11 +25,7 @@ const PresensiForm = () => {
             }
         );
 
-    // ========================================
-    // CEK PRESENSI HARI INI
-    // ========================================
-
-    const fetchPresensiHariIni = async () => {
+       const fetchPresensiHariIni = async () => {
 
         try {
 
@@ -62,27 +55,15 @@ const PresensiForm = () => {
                 "GET PRESENSI HARI INI ERROR:",
                 error
             );
-
         }
-
     };
 
-
     useEffect(() => {
-
         fetchPresensiHariIni();
-
     }, []);
 
-
-    // ========================================
-    // SCROLL KE ATAS SETELAH PRESENSI PULANG
-    // ========================================
-
     useEffect(() => {
-
         if (presensiHariIni.pulang) {
-
             window.scrollTo({
                 top: 0,
                 behavior: "smooth",
@@ -92,57 +73,25 @@ const PresensiForm = () => {
 
     }, [presensiHariIni.pulang]);
 
-
-    // ========================================
-    // GANTI JENIS PRESENSI
-    // ========================================
-
     const handleJenisChange = (jenisBaru) => {
-
         setJenis(jenisBaru);
-
         setStatus("");
-
         setKeterangan("");
-
         setError("");
-
         setSuccess("");
-
     };
 
-
-    // ========================================
-    // SUBMIT
-    // ========================================
-
     const handleSubmit = async (e) => {
-
         e.preventDefault();
-
         setError("");
-
         setSuccess("");
 
-
-        // ========================================
-        // VALIDASI STATUS
-        // ========================================
-
         if (!status) {
-
             setError(
                 "Silakan pilih status presensi."
             );
-
             return;
-
         }
-
-
-        // ========================================
-        // VALIDASI KETERANGAN
-        // ========================================
 
         if (
             (status === "izin" ||
@@ -153,81 +102,46 @@ const PresensiForm = () => {
             setError(
                 "Keterangan wajib diisi untuk izin atau sakit."
             );
-
             return;
-
         }
-
-
-        // ========================================
-        // VALIDASI DATANG
-        // ========================================
 
         if (
             jenis === "datang" &&
             presensiHariIni.datang
         ) {
-
             setError(
                 "Anda sudah melakukan presensi datang hari ini."
             );
-
             return;
-
         }
-
-
-        // ========================================
-        // VALIDASI PULANG
-        // ========================================
-
         if (
             jenis === "pulang" &&
             !presensiHariIni.datang
         ) {
-
             setError(
                 "Anda belum melakukan presensi datang hari ini."
             );
-
             return;
-
         }
-
 
         if (
             jenis === "pulang" &&
             presensiHariIni.pulang
         ) {
-
             setError(
                 "Anda sudah melakukan presensi pulang hari ini."
             );
-
             return;
-
         }
 
-
         try {
-
             setLoading(true);
-
-
-            const token =
-                localStorage.getItem("token");
-
-
-            const response = await axios.post(
-                `/user/presensi/${jenis}`,
+            const token = localStorage.getItem("token");
+            const response = await axios.post( `/user/presensi/${jenis}`,
                 {
                     status,
-
                     keterangan:
-                        status === "hadir"
-                            ? null
-                            : keterangan,
-
+                        status === "hadir" ? null : keterangan,
                     lokasi:
                         "Puskesmas Mandiraja 2",
                 },
@@ -239,15 +153,11 @@ const PresensiForm = () => {
                 }
             );
 
-
             setSuccess(
-                response.data.message ||
-                "Presensi berhasil."
+                response.data.message || "Presensi berhasil."
             );
-
             setStatus("");
             setKeterangan("");
-
             await fetchPresensiHariIni();
 
         } catch (error) {
@@ -257,112 +167,52 @@ const PresensiForm = () => {
                 error
             );
 
-
             setError(
                 error.response?.data?.message ||
                 "Gagal melakukan presensi."
             );
 
         } finally {
-
             setLoading(false);
-
         }
-
     };
-
-
-    // ========================================
-    // SUDAH PULANG
-    // ========================================
 
     const sudahPresensiPulang =
         presensiHariIni.pulang;
 
-
-    // ========================================
-    // RENDER
-    // ========================================
-
     return (
 
         <div className="card shadow-sm">
-
             <div className="card-body p-2">
-
-
-                {/* ========================================
-                    HEADER
-                ======================================== */}
-
-                <h5 className="mb-1">
-                    Presensi
-                </h5>
-
+                <h5 className="mb-1"> Presensi </h5>
                 <p className="text-muted mb-2">
                     Silakan lakukan presensi Anda hari ini.
                 </p>
 
-
-                {/* ========================================
-                    JIKA SUDAH PULANG
-                ======================================== */}
-
                 {sudahPresensiPulang ? (
-
                     <div className="text-center py-3">
 
-                        <div
-                            className="rounded-circle
-                                        bg-success
-                                        bg-opacity-10
-                                        d-flex
-                                        align-items-center
-                                        justify-content-center
-                                        mx-auto
-                                        mb-3"
+                        <div className="rounded-circle bg-success bg-opacity-10 d-flex align-items-center justify-content-center mx-auto mb-3"
                             style={{
-                                width: "50px",
-                                height: "50px",
-                            }}
-                        >
+                                width: "50px", height: "50px",
+                            }}>
 
-                            <i
-                                className="
-                                    bi
-                                    bi-check-circle-fill
-                                    text-success
-                                "
-                                style={{
-                                    fontSize: "42px",
-                                }}
-                            />
-
+                            <i className=" bi bi-check-circle-fill text-success "
+                                style={{ fontSize: "42px", }} />
                         </div>
 
-
                         <h5 className="text-success">
-
                             Anda sudah presensi hari ini
-
                         </h5>
 
-
                         <p className="text-muted mb-0">
-
                             Presensi datang dan pulang
                             Anda untuk hari ini sudah
                             tercatat.
-
                         </p>
-
                     </div>
-
                 ) : (
-
                     <>
-
-
                         {/* ========================================
                             JENIS PRESENSI
                         ======================================== */}
@@ -376,55 +226,73 @@ const PresensiForm = () => {
 
                             <div className="d-flex gap-2">
 
-                                <button
-                                    type="button"
-                                    className={
-                                        jenis === "datang"
-                                            ? "btn btn-primary"
-                                            : "btn btn-outline-primary"
-                                    }
-                                    onClick={() =>
-                                        handleJenisChange(
-                                            "datang"
-                                        )
-                                    }
-                                    disabled={
-                                        presensiHariIni.datang ||
-                                        loading
-                                    }
-                                >
+                            <button
+    type="button"
+    className={
+        jenis === "datang"
+            ? "btn btn-primary"
+            : "btn btn-outline-primary"
+    }
+    style={
+        presensiHariIni.datang || loading
+            ? {
+                  backgroundColor: "#e9ecef",
+                  color: "#6c757d",
+                  borderColor: "#dee2e6",
+                  opacity: 0.7,
+                  cursor: "not-allowed",
+              }
+            : jenis === "datang"
+            ? undefined
+            : {
+                  backgroundColor: "#fff",
+                  color: "#0d6efd",
+                  borderColor: "#0d6efd",
+              }
+    }
+    onClick={() => handleJenisChange("datang")}
+    disabled={presensiHariIni.datang || loading}
+>
+    <i className="bi bi-box-arrow-in-right me-2"></i>
+    Presensi Datang
+</button>
 
-                                    <i className="bi bi-box-arrow-in-right me-2"></i>
-
-                                    Presensi Datang
-
-                                </button>
-
-
-                                <button
-                                    type="button"
-                                    className={
-                                        jenis === "pulang"
-                                            ? "btn btn-primary"
-                                            : "btn btn-outline-primary"
-                                    }
-                                    onClick={() =>
-                                        handleJenisChange(
-                                            "pulang"
-                                        )
-                                    }
-                                    disabled={
-                                        !presensiHariIni.datang ||
-                                        presensiHariIni.pulang ||
-                                        loading
-                                    }
-                                >
-
-                                    <i className="bi bi-box-arrow-right me-2"></i>
-
-                                    Presensi Pulang
-
-                                </button>
+<button
+    type="button"
+    className={
+        jenis === "pulang"
+            ? "btn btn-primary"
+            : "btn btn-outline-primary"
+    }
+    style={
+        !presensiHariIni.datang ||
+        presensiHariIni.pulang ||
+        loading
+            ? {
+                  backgroundColor: "#e9ecef",
+                  color: "#6c757d",
+                  borderColor: "#dee2e6",
+                  opacity: 0.7,
+                  cursor: "not-allowed",
+              }
+            : jenis === "pulang"
+            ? undefined
+            : {
+                  backgroundColor: "#fff",
+                  color: "#0d6efd",
+                  borderColor: "#0d6efd",
+              }
+    }
+    onClick={() => handleJenisChange("pulang")}
+    disabled={
+        !presensiHariIni.datang ||
+        presensiHariIni.pulang ||
+        loading
+    }
+>
+    <i className="bi bi-box-arrow-right me-2"></i>
+    Presensi Pulang
+</button>
 
                             </div>
 
