@@ -250,7 +250,8 @@ const PresensiForm = () => {
                   border: "1px solid #0d6efd",
               }
     }
-    onClick={() => handleJenisChange("datang")}
+   onClick={() =>
+    handleJenisChange(jenis === "datang" ? "" : "datang")}
     disabled={presensiHariIni.datang || loading}
 >
     <i className="bi bi-box-arrow-in-right me-2"></i>
@@ -284,7 +285,8 @@ const PresensiForm = () => {
                   border: "1px solid #0d6efd",
               }
     }
-    onClick={() => handleJenisChange("pulang")}
+   onClick={() =>
+    handleJenisChange(jenis === "pulang" ? "" : "pulang")}
     disabled={
         !presensiHariIni.datang ||
         presensiHariIni.pulang ||
