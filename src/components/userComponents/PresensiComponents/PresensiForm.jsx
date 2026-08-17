@@ -9,10 +9,7 @@ const PresensiForm = () => {
     const [loadingPresensi, setLoadingPresensi] = useState(true);
     const [error, setError] = useState("");
     const [success, setSuccess] = useState("");
-    const [presensiHariIni, setPresensiHariIni] = useState({
-        datang: false,
-        pulang: false,
-    });
+    const [presensiHariIni, setPresensiHariIni] = useState(null);
 
     const tanggalHariIni = new Date();
     const tanggalText =
@@ -68,7 +65,7 @@ const PresensiForm = () => {
     }, []);
 
     useEffect(() => {
-        if (presensiHariIni.pulang) {
+        if (presensiHariIni?.pulang) {
             window.scrollTo({
                 top: 0,
                 behavior: "smooth",
@@ -76,7 +73,7 @@ const PresensiForm = () => {
 
         }
 
-    }, [presensiHariIni.pulang]);
+    }, [presensiHariIni?.pulang]);
 
     const handleJenisChange = (jenisBaru) => {
         setJenis(jenisBaru);
@@ -112,7 +109,7 @@ const PresensiForm = () => {
 
         if (
             jenis === "datang" &&
-            presensiHariIni.datang
+            presensiHariIni?.datang
         ) {
             setError(
                 "Anda sudah melakukan presensi datang hari ini."
@@ -121,7 +118,7 @@ const PresensiForm = () => {
         }
         if (
             jenis === "pulang" &&
-            !presensiHariIni.datang
+            !presensiHariIni?.datang
         ) {
             setError(
                 "Anda belum melakukan presensi datang hari ini."
@@ -131,7 +128,7 @@ const PresensiForm = () => {
 
         if (
             jenis === "pulang" &&
-            presensiHariIni.pulang
+            presensiHariIni?.pulang
         ) {
             setError(
                 "Anda sudah melakukan presensi pulang hari ini."
@@ -183,7 +180,7 @@ const PresensiForm = () => {
     };
 
     const sudahPresensiPulang =
-        presensiHariIni.pulang;
+        presensiHariIni?.pulang;
 
     return (
 
@@ -236,7 +233,7 @@ const PresensiForm = () => {
     className="btn"
     style={
         loadingPresensi ||
-        presensiHariIni.datang ||
+        presensiHariIni?.datang ||
         loading
             ? {
                   backgroundColor: "#e9ecef",
@@ -259,7 +256,7 @@ const PresensiForm = () => {
     }
    onClick={() =>
     handleJenisChange(jenis === "datang" ? "" : "datang")}
-    disabled={loadingPresensi || presensiHariIni.datang || loading}
+    disabled={loadingPresensi || presensiHariIni?.datang || loading}
 >
     <i className="bi bi-box-arrow-in-right me-2"></i>
     Presensi Datang
@@ -271,8 +268,8 @@ const PresensiForm = () => {
     className="btn"
     style={
         loadingPresensi ||
-        !presensiHariIni.datang ||
-        presensiHariIni.pulang ||
+        !presensiHariIni?.datang ||
+        presensiHariIni?.pulang ||
         loading
             ? {
                   backgroundColor: "#e9ecef",
@@ -297,8 +294,8 @@ const PresensiForm = () => {
     handleJenisChange(jenis === "pulang" ? "" : "pulang")}
     disabled={
         loadingPresensi ||
-        !presensiHariIni.datang ||
-        presensiHariIni.pulang ||
+        !presensiHariIni?.datang ||
+        presensiHariIni?.pulang ||
         loading
     }
 >
