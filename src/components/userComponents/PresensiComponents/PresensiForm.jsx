@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 
 const PresensiForm = () => {
-    const [jenis, setJenis] = useState("datang");
+    const [jenis, setJenis] = useState("");
     const [status, setStatus] = useState("");
     const [keterangan, setKeterangan] = useState("");
     const [loading, setLoading] = useState(false);
