@@ -6,6 +6,7 @@ const PresensiForm = () => {
     const [status, setStatus] = useState("");
     const [keterangan, setKeterangan] = useState("");
     const [loading, setLoading] = useState(false);
+    const [loadingPresensi, setLoadingPresensi] = useState(true);
     const [error, setError] = useState("");
     const [success, setSuccess] = useState("");
     const [presensiHariIni, setPresensiHariIni] = useState({
@@ -26,6 +27,8 @@ const PresensiForm = () => {
         );
 
        const fetchPresensiHariIni = async () => {
+
+        setLoadingPresensi(true);
 
         try {
 
@@ -55,6 +58,8 @@ const PresensiForm = () => {
                 "GET PRESENSI HARI INI ERROR:",
                 error
             );
+        } finally {
+            setLoadingPresensi(false);
         }
     };
 
@@ -230,7 +235,9 @@ const PresensiForm = () => {
     type="button"
     className="btn"
     style={
-        presensiHariIni.datang || loading
+        loadingPresensi ||
+        presensiHariIni.datang ||
+        loading
             ? {
                   backgroundColor: "#e9ecef",
                   color: "#6c757d",
@@ -252,7 +259,7 @@ const PresensiForm = () => {
     }
    onClick={() =>
     handleJenisChange(jenis === "datang" ? "" : "datang")}
-    disabled={presensiHariIni.datang || loading}
+    disabled={loadingPresensi || presensiHariIni.datang || loading}
 >
     <i className="bi bi-box-arrow-in-right me-2"></i>
     Presensi Datang
@@ -263,6 +270,7 @@ const PresensiForm = () => {
     type="button"
     className="btn"
     style={
+        loadingPresensi ||
         !presensiHariIni.datang ||
         presensiHariIni.pulang ||
         loading
@@ -288,6 +296,7 @@ const PresensiForm = () => {
    onClick={() =>
     handleJenisChange(jenis === "pulang" ? "" : "pulang")}
     disabled={
+        loadingPresensi ||
         !presensiHariIni.datang ||
         presensiHariIni.pulang ||
         loading
