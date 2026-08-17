@@ -228,26 +228,26 @@ const PresensiForm = () => {
 
                             <button
     type="button"
-    className={
-        jenis === "datang"
-            ? "btn btn-primary"
-            : "btn btn-outline-primary"
-    }
+    className="btn"
     style={
         presensiHariIni.datang || loading
             ? {
                   backgroundColor: "#e9ecef",
                   color: "#6c757d",
-                  borderColor: "#dee2e6",
+                  border: "1px solid #dee2e6",
                   opacity: 0.7,
                   cursor: "not-allowed",
               }
             : jenis === "datang"
-            ? undefined
+            ? {
+                  backgroundColor: "#0d6efd",
+                  color: "#fff",
+                  border: "1px solid #0d6efd",
+              }
             : {
                   backgroundColor: "#fff",
                   color: "#0d6efd",
-                  borderColor: "#0d6efd",
+                  border: "1px solid #0d6efd",
               }
     }
     onClick={() => handleJenisChange("datang")}
@@ -257,13 +257,10 @@ const PresensiForm = () => {
     Presensi Datang
 </button>
 
+
 <button
     type="button"
-    className={
-        jenis === "pulang"
-            ? "btn btn-primary"
-            : "btn btn-outline-primary"
-    }
+    className="btn"
     style={
         !presensiHariIni.datang ||
         presensiHariIni.pulang ||
@@ -271,16 +268,20 @@ const PresensiForm = () => {
             ? {
                   backgroundColor: "#e9ecef",
                   color: "#6c757d",
-                  borderColor: "#dee2e6",
+                  border: "1px solid #dee2e6",
                   opacity: 0.7,
                   cursor: "not-allowed",
               }
             : jenis === "pulang"
-            ? undefined
+            ? {
+                  backgroundColor: "#0d6efd",
+                  color: "#fff",
+                  border: "1px solid #0d6efd",
+              }
             : {
                   backgroundColor: "#fff",
                   color: "#0d6efd",
-                  borderColor: "#0d6efd",
+                  border: "1px solid #0d6efd",
               }
     }
     onClick={() => handleJenisChange("pulang")}
